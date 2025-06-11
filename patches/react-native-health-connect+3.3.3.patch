@@ -1,0 +1,150 @@
+diff --git a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBasalBodyTemperatureRecord.kt b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBasalBodyTemperatureRecord.kt
+index 71e6526..144ef86 100644
+--- a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBasalBodyTemperatureRecord.kt
++++ b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBasalBodyTemperatureRecord.kt
+@@ -70,7 +70,7 @@ class ReactBasalBodyTemperatureRecord : ReactHealthRecordImpl<BasalBodyTemperatu
+     throw AggregationNotSupported()
+   }
+ 
+-  private fun getTemperatureFromJsMap(temperatureMap: ReadableMap?): Temperature {
++  private fun getTemperatureFromJsMap(temperatureMap: ReadableMap): Temperature {
+     if (temperatureMap == null) {
+       throw InvalidTemperature()
+     }
+diff --git a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBasalMetabolicRateRecord.kt b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBasalMetabolicRateRecord.kt
+index 6ed3369..35ca3ef 100644
+--- a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBasalMetabolicRateRecord.kt
++++ b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBasalMetabolicRateRecord.kt
+@@ -130,7 +130,7 @@ class ReactBasalMetabolicRateRecord : ReactHealthRecordImpl<BasalMetabolicRateRe
+     }
+   }
+ 
+-  private fun getPowerFromJsMap(powerMap: ReadableMap?): Power {
++  private fun getPowerFromJsMap(powerMap: ReadableMap): Power {
+     if (powerMap == null) {
+       throw InvalidPower()
+     }
+diff --git a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBloodGlucoseRecord.kt b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBloodGlucoseRecord.kt
+index a3dcc84..6a232b2 100644
+--- a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBloodGlucoseRecord.kt
++++ b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBloodGlucoseRecord.kt
+@@ -82,7 +82,7 @@ class ReactBloodGlucoseRecord : ReactHealthRecordImpl<BloodGlucoseRecord> {
+     }
+   }
+ 
+-  private fun getBloodGlucoseFromJsMap(bloodGlucoseMap: ReadableMap?): BloodGlucose {
++  private fun getBloodGlucoseFromJsMap(bloodGlucoseMap: ReadableMap): BloodGlucose {
+     if (bloodGlucoseMap == null) {
+       throw InvalidBloodGlucoseLevel()
+     }
+diff --git a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBloodPressureRecord.kt b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBloodPressureRecord.kt
+index 1c43b20..e9b0ee2 100644
+--- a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBloodPressureRecord.kt
++++ b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBloodPressureRecord.kt
+@@ -138,7 +138,7 @@ class ReactBloodPressureRecord : ReactHealthRecordImpl<BloodPressureRecord> {
+     }
+   }
+ 
+-  private fun getBloodPressureFromJsMap(bloodPressureMap: ReadableMap?): Pressure {
++  private fun getBloodPressureFromJsMap(bloodPressureMap: ReadableMap): Pressure {
+     if (bloodPressureMap == null) {
+       throw InvalidBloodPressure()
+     }
+diff --git a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBodyTemperatureRecord.kt b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBodyTemperatureRecord.kt
+index 7264ac2..343e30a 100644
+--- a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBodyTemperatureRecord.kt
++++ b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/records/ReactBodyTemperatureRecord.kt
+@@ -70,7 +70,7 @@ class ReactBodyTemperatureRecord : ReactHealthRecordImpl<BodyTemperatureRecord>
+     throw AggregationNotSupported()
+   }
+ 
+-  private fun getTemperatureFromJsMap(temperatureMap: ReadableMap?): Temperature {
++  private fun getTemperatureFromJsMap(temperatureMap: ReadableMap): Temperature {
+     if (temperatureMap == null) {
+       throw InvalidTemperature()
+     }
+diff --git a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/utils/HealthConnectUtils.kt b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/utils/HealthConnectUtils.kt
+index b16609c..13180d8 100644
+--- a/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/utils/HealthConnectUtils.kt
++++ b/node_modules/react-native-health-connect/android/src/main/java/dev/matinzd/healthconnect/utils/HealthConnectUtils.kt
+@@ -130,7 +130,7 @@ fun ReadableMap.getTimeRangeFilter(key: String? = null): TimeRangeFilter {
+   }
+ }
+ 
+-fun convertMetadataFromJSMap(meta: ReadableMap?): Metadata {
++fun convertMetadataFromJSMap(meta: ReadableMap): Metadata {
+   if (meta == null) {
+     return Metadata()
+   }
+@@ -312,7 +312,7 @@ fun massToJsMap(mass: Mass?): WritableNativeMap {
+   }
+ }
+ 
+-fun getMassFromJsMap(massMap: ReadableMap?): Mass {
++fun getMassFromJsMap(massMap: ReadableMap): Mass {
+   if (massMap == null) {
+     throw InvalidMass()
+   }
+@@ -329,7 +329,7 @@ fun getMassFromJsMap(massMap: ReadableMap?): Mass {
+   }
+ }
+ 
+-fun getLengthFromJsMap(length: ReadableMap?): Length {
++fun getLengthFromJsMap(length: ReadableMap): Length {
+   if (length == null) {
+     throw InvalidLength()
+   }
+@@ -366,7 +366,7 @@ fun zoneOffsetToJsMap(zoneOffset: ZoneOffset?): WritableNativeMap? {
+   }
+ }
+ 
+-fun getVolumeFromJsMap(volume: ReadableMap?): Volume {
++fun getVolumeFromJsMap(volume: ReadableMap): Volume {
+   if (volume == null) {
+     throw InvalidLength()
+   }
+@@ -388,7 +388,7 @@ fun volumeToJsMap(volume: Volume?): WritableNativeMap {
+   }
+ }
+ 
+-fun getEnergyFromJsMap(energyMap: ReadableMap?): Energy {
++fun getEnergyFromJsMap(energyMap: ReadableMap): Energy {
+   if (energyMap == null) {
+     throw InvalidEnergy()
+   }
+@@ -412,7 +412,7 @@ fun energyToJsMap(energy: Energy?): WritableNativeMap {
+   }
+ }
+ 
+-fun getVelocityFromJsMap(velocityMap: ReadableMap?): Velocity {
++fun getVelocityFromJsMap(velocityMap: ReadableMap): Velocity {
+   if (velocityMap == null) {
+     throw InvalidVelocity()
+   }
+@@ -434,7 +434,7 @@ fun velocityToJsMap(velocity: Velocity?): WritableNativeMap {
+   }
+ }
+ 
+-fun getPowerFromJsMap(powerMap: ReadableMap?): Power {
++fun getPowerFromJsMap(powerMap: ReadableMap): Power {
+   if (powerMap == null) {
+     throw InvalidVelocity()
+   }
+@@ -461,7 +461,7 @@ fun convertChangesTokenRequestOptionsFromJS(options: ReadableMap): ChangesTokenR
+   )
+ }
+ 
+-fun mapJsDurationToDuration(duration: ReadableMap?): Duration {
++fun mapJsDurationToDuration(duration: ReadableMap): Duration {
+   if (duration == null) {
+     return Duration.ofDays(0)
+   }
+@@ -476,7 +476,7 @@ fun mapJsDurationToDuration(duration: ReadableMap?): Duration {
+   }
+ }
+ 
+-fun mapJsPeriodToPeriod(period: ReadableMap?): Period {
++fun mapJsPeriodToPeriod(period: ReadableMap): Period {
+   if (period == null) {
+     return Period.ofDays(0)
+   }
