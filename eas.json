@@ -3,13 +3,16 @@
     "version": ">= 16.9.0",
     "appVersionSource": "remote"
   },
+
   "build": {
     "development": {
       "developmentClient": true,
       "distribution": "internal",
 
-      // 👇 override Gradle command & pass the flag
-      "gradleCommand": ":app:assembleDebug -PdisableStrictNullChecks"
+      "android": {
+        // compile the whole dev APK and disable Kotlin’s strict null-checks
+        "gradleCommand": ":app:assembleDebug -PdisableStrictNullChecks"
+      }
     },
 
     "preview": {
